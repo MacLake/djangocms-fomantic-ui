@@ -278,8 +278,8 @@ class Icon(models.Model):
             'loading' if self.disabled else '',
             'fitted' if self.disabled else '', self.size,
             'link' if self.link else '',
-            '{} flipped'.format(self.flipped) if self.flipped else '',
-            '{} rotated'.format(self.rotated) if self.rotated else '',
+            f'{self.flipped} flipped' if self.flipped else '',
+            f'{self.rotated} rotated' if self.rotated else '',
             'circular' if self.circular else '', self.colour, self.name
         )
 
@@ -331,7 +331,7 @@ class StepsContainerModel(CMSPlugin):
         if self.fluid:
             classes.append('fluid')
         if self.attached:
-            classes.append('{} attached'.format(self.attached))
+            classes.append(f'{self.attached} attached')
         if self.size:
             classes.append(self.size)
         classes.append('steps')
@@ -357,7 +357,7 @@ class StepModel(CMSPlugin):
     tab_text = HTMLField(blank=True, default='')
 
     def __str__(self):
-        return '{} {}'.format(self.icon_name, self.title)
+        return f'{self.icon_name} {self.title}'
 
     def get_classes(self):
         classes = ['ui']
@@ -372,7 +372,7 @@ class StepModel(CMSPlugin):
 
     def get_on_click(self):
         if self.tab_text:
-            return 'onclick="show(\'#step-{}\')"'.format(self.id)
+            return f'onclick="show(\'#step-{self.id}\')"'
         else:
             return ''
 
@@ -483,9 +483,9 @@ class Embed(CMSPlugin):
     def __str__(self):
         if self.source:
             if self.title:
-                return '{} {}'.format(self.get_source_display(), self.title)
+                return f'{self.get_source_display()} {self.title}'
             else:
-                return '{} {}'.format(self.get_source_display(), self.medium_id)
+                return f'{self.get_source_display()} {self.medium_id}'
         else:
             if self.title:
                 return self.title
@@ -495,14 +495,14 @@ class Embed(CMSPlugin):
     @property
     def width(self):
         if self.width_value:
-            return '{}{}'.format(self.width_value, self.width_unit)
+            return f'{self.width_value}{self.width_unit}'
         else:
             return ''
 
     @property
     def height(self):
         if self.height_value:
-            return '{}{}'.format(self.height_value, self.height_unit)
+            return f'{self.height_value}{self.height_unit}'
         else:
             return ''
 
@@ -524,14 +524,14 @@ class Embed(CMSPlugin):
     def get_style(self):
         styles = []
         if self.width:
-            styles.append('width: {};'.format(self.width))
+            styles.append(f'width: {self.width};')
         if self.height:
-            styles.append('height: {};'.format(self.height))
+            styles.append(f'height: {self.height};')
         return ' '.join(styles)
 
     def clean(self):
         # TODO: Adopt more and check for video file
-        if self.medium_id == '' and self.url == '' and self.video_file == None:
+        if self.medium_id == '' and self.url == '' and self.video_file is None:
             raise ValidationError(
                 _('Either medium id or url or video file must tbe defined.')
             )
@@ -602,9 +602,7 @@ class Reveal(CMSPlugin):
     )
 
     def __str__(self):
-        return '{} {} → {}'.format(
-            self.visible_image, self.effect, self.hidden_image
-        )
+        return f'{self.visible_image} {self.effect} → {self.hidden_image}'
 
 
 class Grid(CMSPlugin):
@@ -680,9 +678,7 @@ class Grid(CMSPlugin):
         if self.centered:
             classes.append('centered')
         if self.nr_columns:
-            classes.append(
-                '{} column'.format(NUMBER_TO_ENGLISH[self.nr_columns])
-            )
+            classes.append(f'{NUMBER_TO_ENGLISH[self.nr_columns]} column')
         classes.append('grid')
         if self.container:
             classes.append('container')
@@ -729,13 +725,11 @@ class Row(CMSPlugin):
     def get_classes(self):
         classes = []
         if self.nr_columns:
-            classes.append(
-                '{} column'.format(NUMBER_TO_ENGLISH[self.nr_columns])
-            )
+            classes.append(f'{NUMBER_TO_ENGLISH[self.nr_columns]} column')
         if self.colour:
             classes.append(self.colour)
         if self.text_alignment:
-            classes.append('{} aligned'.format(self.text_alignment))
+            classes.append(f'{self.text_alignment} aligned')
         if self.doubling:
             classes.append('doubling')
         classes.append('row')
@@ -782,11 +776,11 @@ class Column(CMSPlugin):
         if self.colour:
             classes.append(self.colour)
         if self.floated:
-            classes.append('{} floated'.format(self.floated))
+            classes.append(f'{self.floated} floated')
         if self.text_alignment:
-            classes.append('{} aligned'.format(self.text_alignment))
+            classes.append(f'{self.text_alignment} aligned')
         if self.width:
-            classes.append('{} wide'.format(NUMBER_TO_ENGLISH[self.width]))
+            classes.append(f'{NUMBER_TO_ENGLISH[self.width]} wide')
         if self.hide_on_mobile:
             classes.append('computer only')
         classes.append('column')
@@ -931,9 +925,9 @@ class Segment(ColouredComponent):  # , FloatedComponent, AlignedComponent
         if self.clearing:
             classes.append('clearing')
         if self.floated:
-            classes.append('{} floated'.format(self.floated))
+            classes.append(f'{self.floated} floated')
         if self.text_alignment:
-            classes.append('{} aligned'.format(self.text_alignment))
+            classes.append(f'{self.text_alignment} aligned')
         if self.basic:
             classes.append('basic')
         return ' '.join(classes)
@@ -1046,7 +1040,7 @@ class Div(CMSPlugin):
     )
 
     def __str__(self):
-        return '{}'.format(self.get_background_colour_name())
+        return f'{self.get_background_colour_name()}'
 
     def clean(self):
         if self.background_colour_text and self.background_colour_choice:
@@ -1121,7 +1115,7 @@ class Button(CMSPlugin):
     )
 
     def __str__(self):
-        return '{} {}'.format(self.get_classes(), self.text)
+        return f'{self.get_classes()} {self.text}'
 
     def get_classes(self):
         classes = ['ui']
@@ -1169,7 +1163,7 @@ class Statistic(ColouredComponent):
     inverted = models.BooleanField(default=False)
 
     def __str__(self):
-        return '{} {}'.format(self.get_value(), self.label)
+        return f'{self.get_value()} {self.label}'
 
     def get_value(self):
         return self.value_int or self.value_float or self.value_text

@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from .models import Card, Icon, Embed, Reveal
 
-
 # @admin.register(Tab)
 # class TabAdmin(admin.ModelAdmin):
 # 	pass
@@ -69,7 +68,6 @@ class RevealAdmin(admin.ModelAdmin):
 # @admin.register(Column)
 # class GridColumnAdmin(admin.ModelAdmin):
 # 	pass
-
 
 # @admin.register(StaffMember)
 # class StaffMemberAdmin(TranslatableAdmin):

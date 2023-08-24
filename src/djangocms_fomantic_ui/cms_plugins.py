@@ -24,8 +24,7 @@ class TabsContainerPluginModelPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         # context.update({'instance': instance})
-        context = super(TabsContainerPluginModelPublisher,
-                        self).render(context, instance, placeholder)
+        context = super().render(context, instance, placeholder)
         return context
 
 
@@ -43,8 +42,7 @@ class TabPluginPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         # context.update({'instance': instance}) # alt?
-        context = super(TabPluginPublisher,
-                        self).render(context, instance, placeholder)  # neu?
+        context = super().render(context, instance, placeholder)  # neu?
         return context
 
 
@@ -61,8 +59,7 @@ class AccordionPluginModelPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         # context.update({'instance': instance})
-        context = super(AccordionPluginModelPublisher,
-                        self).render(context, instance, placeholder)
+        context = super().render(context, instance, placeholder)
         return context
 
 
@@ -80,8 +77,7 @@ class AccordionSectionPluginPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         # context.update({'instance': instance})
-        context = super(AccordionSectionPluginPublisher,
-                        self).render(context, instance, placeholder)
+        context = super().render(context, instance, placeholder)
         return context
 
 
@@ -114,8 +110,7 @@ class CardPluginPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         # context.update({'instance': instance})
-        context = super(CardPluginPublisher,
-                        self).render(context, instance, placeholder)
+        context = super().render(context, instance, placeholder)
         return context
 
 
