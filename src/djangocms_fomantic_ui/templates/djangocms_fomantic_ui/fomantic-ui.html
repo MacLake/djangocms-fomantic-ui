@@ -7,19 +7,15 @@
 	{% render_block "css" %}
 
 	{% block webpack %}
+	{% addtoblock "js" strip %}
 	<script src="{% static 'djangocms_fomantic_ui/webpack/index.bundle.js' %}"></script>
+	{% endaddtoblock %}
 	{% endblock webpack %}
 
 	{% block fomantic_ui %}
 	{# Fomantic UI #}
 	{% addtoblock "js" strip %}
-	<script src="{% static 'semantic/semantic.js' %}"></script>
-	{% endaddtoblock %}
-	{% addtoblock "css" strip %}
-	{# <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}"> #}
-	{% endaddtoblock %}
-	{% addtoblock "css" strip %}
-	<link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
+	<script src="{% static 'djangocms_fomantic_ui/semantic.min.js' %}"></script>
 	{% endaddtoblock %}
 	{% endblock fomantic_ui %}
 </head>
@@ -41,7 +37,14 @@
 {% endif %}
 {% endblock toast_messages %}
 
+<div class="ui container">
+	<div class="ui menu">
+		{% show_menu 0 0 0 0 "djangocms_fomantic_ui/menu/menu_items_sub_menu.html" %}
+		{% show_menu 1 100 100 100 "djangocms_fomantic_ui/menu/menu_items_sub_menu.html" %}
+	</div>
+
 {% block content %}{% placeholder "content" %}{% endblock content %}
+</div>
 
 {% render_block "js" %}
 

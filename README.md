@@ -19,3 +19,4 @@ pip install djangocms-fomantic-ui
 ## License
 
 `djangocms-fomantic-ui` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+Stellaris_Clapper-board.svg is in the public domain, taken from [clker.com](http://www.clker.com/clipart-10793.html).
