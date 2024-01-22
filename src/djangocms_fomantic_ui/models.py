@@ -5,7 +5,6 @@ from django.utils.translation import gettext as _
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.file import FilerFileField
 from filer.fields.image import FilerImageField
-from parler.models import TranslatableModel, TranslatedFields
 
 SIZES = [
     ('mini', _('mini')),
@@ -1025,14 +1024,12 @@ class Div(CMSPlugin):
 
     background_colour_text = models.CharField(
         max_length=20,
-        null=True,
         blank=True,
         verbose_name=_('Background colour name or value'),
         help_text=_('In CSS notation like "#789abc88" or decimal')
     )
     background_colour_choice = models.CharField(
         max_length=9,
-        null=True,
         blank=True,
         choices=BACKGROUND_COLOURS,
         verbose_name=_('or choose'),

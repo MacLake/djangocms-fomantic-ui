@@ -4,10 +4,28 @@ from django.conf import settings
 from django.utils.translation import gettext as _
 
 from .models import (
-    TabsContainerPluginModel, TabPluginModel, Accordion, AccordionSection,
-    CardsContainerPluginModel, CardPluginModel, IconPluginModel,
-    StepsContainerModel, StepModel, Message, Grid, Row, Column, Segment,
-    Container, Div, Button, Buttons, Statistic, Statistics, Reveal, Embed
+    Accordion,
+    AccordionSection,
+    Button,
+    Buttons,
+    CardPluginModel,
+    CardsContainerPluginModel,
+    Column,
+    Container,
+    Div,
+    Embed,
+    Grid,
+    IconPluginModel,
+    Message,
+    Reveal,
+    Row,
+    Segment,
+    Statistic,
+    Statistics,
+    StepModel,
+    StepsContainerModel,
+    TabPluginModel,
+    TabsContainerPluginModel,
 )
 
 

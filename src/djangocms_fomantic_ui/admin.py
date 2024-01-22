@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Card, Icon, Embed, Reveal
+from .models import Card, Embed, Icon, Reveal
 
 # @admin.register(Tab)
 # class TabAdmin(admin.ModelAdmin):
