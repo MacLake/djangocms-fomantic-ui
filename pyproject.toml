@@ -91,37 +91,20 @@ skip-string-normalization = true
 target-version = "py39"
 line-length = 120
 select = [
-#  "A",
-#  "ARG",
-#  "B",
-#  "C",
-#  "DTZ",
-  "E",
-#  "EM",
-#  "F",
-#  "FBT",
-#  "I",
-#  "ICN",
-#  "ISC",
-#  "N",
-#  "PLC",
-#  "PLE",
-#  "PLR",
-#  "PLW",
-#  "Q",
-#  "RUF",
-#  "S",
-#  "T",
-#  "TID",
-  "UP",
-#  "W",
-#  "YTT",
+    "E",  # pycodestyle error
+    "W",  # pycodestyle warning
+    "F",  # Pyflakes
+    "I",  # isort
+    "UP",  # pyupgrade
+    "DJ",  # flake8-django
 ]
 ignore = [
 ]
 unfixable = [
   "F841",  # unused variable
 ]
+# Enumerate all fixed violations.
+show-fixes = true
 
 [tool.ruff.isort]
 known-first-party = ["djangocms_fomantic_ui"]
