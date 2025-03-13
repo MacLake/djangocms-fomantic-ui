@@ -1,10 +1,26 @@
 from cms.models import CMSPlugin, ValidationError
+from django import forms
+from django.apps import apps
 from django.db import models
 from django.templatetags.static import static
 from django.utils.translation import gettext as _
-from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.file import FilerFileField
 from filer.fields.image import FilerImageField
+
+# HTMLField is a custom field that allows to use a rich text editor
+# Probe for djangocms_text first, then for djangocms_text_ckeditor
+# and finally fallback to a simple textarea
+if apps.is_installed("djangocms_text"):
+    from djangocms_text.fields import HTMLField
+elif apps.is_installed("djangocms_text_ckeditor"):
+    from djangocms_text_ckeditor.fields import HTMLField
+else:
+
+    class HTMLField(models.TextField):
+        def __init__(self, *args, **kwargs):
+            kwargs.setdefault("widget", forms.Textarea)
+            super().__init__(*args, **kwargs)
+
 
 SIZES = [
     ('mini', _('mini')),
