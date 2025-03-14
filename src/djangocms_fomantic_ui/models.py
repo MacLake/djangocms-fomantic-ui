@@ -10,7 +10,13 @@ from filer.fields.image import FilerImageField
 # HTMLField is a custom field that allows to use a rich text editor
 # Probe for djangocms_text first, then for djangocms_text_ckeditor
 # and finally fallback to a simple textarea
-if apps.is_installed("djangocms_text"):
+if (
+    apps.is_installed("djangocms_text")
+    or apps.is_installed("djangocms_text.contrib.text_ckeditor4")
+    or apps.is_installed("djangocms_text.contrib.text_ckeditor5")
+    or apps.is_installed("djangocms_text.contrib.text_quill")
+    or apps.is_installed("djangocms_text.contrib.text_tinymce")
+):
     from djangocms_text.fields import HTMLField
 elif apps.is_installed("djangocms_text_ckeditor"):
     from djangocms_text_ckeditor.fields import HTMLField
