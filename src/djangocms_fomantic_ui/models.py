@@ -1138,6 +1138,8 @@ class Button(CMSPlugin):
 
     def get_classes(self):
         classes = ['ui']
+        if self.size:
+            classes.append(self.size)
         if self.colour:
             classes.append(self.colour)
         if self.visible_content or self.hidden_content:
